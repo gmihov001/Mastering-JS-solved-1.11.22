@@ -1,5 +1,19 @@
 function detectOutlierValue(string) {
-    // your code here
+    let odds = [];
+    let evens = [];
+    let array = string.split(' ');
+    let outlier;
+    let outlierInd;
+
+    for(const iterator of array) {
+        if(iterator % 2 == 0) evens.push(iterator);
+        else odds.push(iterator);
+    }
+
+    if(odds.length == 1) outlier = odds[0];
+    else outlier = evens[0]; 
+    
+    return array.indexOf(outlier) + 1;
 }
 
 // Third number is odd, while the rest of the numbers are even
