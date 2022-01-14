@@ -1,30 +1,27 @@
 function findLongestPalindrome(sentence) {
-  // split sentence into words
-  // iterate words and collect the palindromes
-  // sort the list of palindromes by word length
-  // return the largest item in the sorted list
 
   let max_length = 0;
-  let maxp = '';
+  let longest_pal = '';
 
-  for (let i = 0; i < sentence.length; i++) {
-    var subs = sentence.substr(i, sentence.length);
+  for (let i = 0; i < sentence.length; i++) { // loop sentence from front
+    var subs = sentence.substr(i, sentence.length); //create substring from current i to end; removing a letter from front
 
-    for (let j = subs.length; j >= 0; j--) {
-      var sub_subs_str = subs.substr(0, j);
+    for (let j = subs.length; j >= 0; j--) { // loop substring from end to front
+      var sub_subs_str = subs.substr(0, j); //create substring from beginning to current j; removing a letter from back 
 
-      if (sub_subs_str.length <= 1)  continue;
-      if(isPalindrome(sub_subs_str)){
-        if( sub_subs_str.length > max_length ){
-          max_length = sub_subs_str.length;
-          maxp = sub_subs_str;
+      if (sub_subs_str.length <= 1)  continue; //if inner substr length is 1 or less skip iteration
+
+      if(isPalindrome(sub_subs_str)){     //check if inner substring is palindrome with function
+        if( sortAscendingByLength(sub_subs_str, longest_pal) == 1 ){
+          max_length = sub_subs_str.length; // reassign to newest substr length
+          longest_pal = sub_subs_str; // reassing longest_pal with newest found substr
         }
       }
       
     }
   }
 
-  return maxp;
+  return longest_pal;
 }
 
 function reverseString(string) {
@@ -36,9 +33,6 @@ function reverseString(string) {
 }
 
 function isPalindrome(word) {
-  // hint: you can detect palindromes by comparing a string to its reverse
-  console.log("40", word);
-  console.log("41", reverseString(word));
   return word.toLowerCase() == reverseString(word).toLowerCase();
 }
 
