@@ -2,7 +2,8 @@ var obj = {
   key: ['a', 'long', 'game']
 };
 function getEvenLengthWordsAtProperty(obj, key) {
-    // your code here
+    let newArr = obj.key.filter((word) => word.length % 2 == 0);
+    return newArr;
 }
 
 var output = getEvenLengthWordsAtProperty(obj, 'key');
