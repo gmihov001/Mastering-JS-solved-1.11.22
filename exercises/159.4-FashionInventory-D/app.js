@@ -1,5 +1,20 @@
 function getLaceNameDataForShoes(array) {
-    
+  let laced = []
+  array.forEach(
+    (designer) => {
+      designer.shoes.forEach(shoe => {
+        if(shoe.name.includes("lace")){
+          let newObj = {};
+          newObj.nameWords = shoe.name.split(' ');
+          newObj.nameWords.forEach((word, wordIndex) => {
+            if(word.includes('lace')) newObj.targetWordIndex = wordIndex;
+          });
+          laced.push(newObj);
+        }  
+      });
+    }
+  );
+  return laced;
 }
 
 var inventory = [
